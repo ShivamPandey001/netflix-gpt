@@ -19,7 +19,8 @@
     - UpdateProfileApi call also
     - Fetch Movies from TMBD movies
     - BugFix -> if the user is loggedIn, redirect him to the browse page
-    - BUGFIX -> if the user is not loggedIn redirect/browse to login page and vice versa
+    - BUGFIX -> if the user is not loggedIn redirect/browse to login page & vice versa
+    - 
 # Features
 
 - Login/SignUp

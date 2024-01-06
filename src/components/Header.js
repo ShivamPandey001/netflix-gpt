@@ -34,7 +34,7 @@ const Header = () => {
 */
     
 useEffect(() => {
-  onAuthStateChanged(auth, (user) => {
+   const unsubscribe = onAuthStateChanged(auth, (user) => {
     if (user) {
       // i can get alot more things from user, like uid, displayName, emailId
       const { uid, displayName, email, photoURL } = user;
@@ -54,6 +54,8 @@ useEffect(() => {
       navigate("/");
     }
   });
+
+  return () => unsubscribe();
 }, []);
 
     const handleSignOut =()=>{
