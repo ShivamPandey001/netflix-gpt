@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import {auth} from "../utils/firebase"
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BGIMAGE, USER_AVATAR } from "../constants";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -39,7 +40,7 @@ const Login = () => {
             // hard coding photo url
             updateProfile(user, {
                 displayName: name.current.value, 
-                photoURL: "https://avatars.githubusercontent.com/u/54200130?v=4"
+                photoURL: USER_AVATAR
               }).then(() => {
                 // Profile updated!
                 //solving the Bug
@@ -78,7 +79,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/c38a2d52-138e-48a3-ab68-36787ece46b3/eeb03fc9-99c6-438e-824d-32917ce55783/IN-en-20240101-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={BGIMAGE}
           alt="backGroundImage"
         />
       </div>

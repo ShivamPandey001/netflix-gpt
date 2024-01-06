@@ -20,7 +20,8 @@
     - Fetch Movies from TMBD movies
     - BugFix -> if the user is loggedIn, redirect him to the browse page
     - BUGFIX -> if the user is not loggedIn redirect/browse to login page & vice versa
-    - 
+    - Unsubscribed to the onAuthStateChanged callback
+    - Add hardcoded value to the constants file
 # Features
 
 - Login/SignUp
