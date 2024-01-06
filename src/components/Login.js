@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
 import checkValidateData from "../utils/checkValidData";
 import Header from "./Header";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../utils/firebase"
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
-  const [errorMessage, setErrorMsg] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   // useRef to create a reference
   const email = useRef(null);
@@ -16,20 +18,57 @@ const Login = () => {
   };
 
   const handleButtonClick = () =>{
-      // Validate Form
-    //   checkValidateData(email)
-    console.log(email.current.value);
-    console.log(password.current.value);
 
-    // let's validate
     if(name.current.value ===null) {
         name.current.value = "";
     }
     const message = checkValidateData(email.current.value, password.current.value, name.current.value);
-    console.log(message);
 
-    setErrorMsg(message);
+    setErrorMessage(message);
+
+    // if there is any error just return no need to go further
+    if(message) return;
+
+    // signIn SignUp Logic
+    if(!isSignInForm){
+       
+        /**
+         * SignUp logic
+         *  const auth = getAuth(); to call in once inside our our app, just pasted it in firebase.js    
+         * createUserWithEmailAndPassword will take auth, emailId, and Password, 
+         * once you called the api it create the user if the response is success and also give the userId and signIn automatically, it not success it will throw the error
+         */
+        createUserWithEmailAndPassword(auth, email.current.value, password.current.value, name.current.value)
+          .then((userCredential) => {
+            // Signed In -> it will signedIn me automatically
+            const user = userCredential.user;
+            console.log(user);
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMessage(errorCode + "-" + errorMessage);
+          });    
+    } else {
+        // Sign In logic
+        signInWithEmailAndPassword(auth, email.current.value, password.current.value, name.current.value)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user)
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMessage(errorCode+ "-" +errorMessage);
+          });
+    }
+
+
   }
+
   return (
     <div>
       <Header />
@@ -62,7 +101,7 @@ const Login = () => {
           className="p-4 my-4 w-full bg-gray-700 rounded-md"
         />
         <p className="text-red-500 font-bold text-lg py-2">
-            ⚠️{errorMessage}
+            {errorMessage}
         </p>
         <button className="p-4 my-6 bg-red-700 w-full rounded-lg rounded-md" onClick={handleButtonClick}>
         {isSignInForm ? "Sign in" : "Sign up"}
