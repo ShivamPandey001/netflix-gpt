@@ -3,14 +3,12 @@ import checkValidateData from "../utils/checkValidData";
 import Header from "./Header";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../utils/firebase"
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   // useRef to create a reference
   const email = useRef(null);
   const password = useRef(null);
@@ -49,13 +47,12 @@ const Login = () => {
                 // if you extract it from user, user shouldnot have the updated value, so from auth we can get from auth.currentUser as auth is coming from getAuth()
                 const {uid, displayName, email, photoURL} = user;
                 // after getting the required infos. just update the store
-                dispatch(addUser({uid: uid, email:email, displayName:displayName, photoURL:photoURL}));
-                navigate("/browse")
-              }).catch((error) => {
+                dispatch(addUser({uid: uid, email:email, displayName:displayName, photoURL:photoURL}));              
+                
+            }).catch((error) => {
                 // An error occurred
                 setErrorMessage(error.message)
               });
-            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -67,8 +64,6 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email.current.value, password.current.value, name.current.value)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
-            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -76,8 +71,6 @@ const Login = () => {
             setErrorMessage(errorCode+ "-" +errorMessage);
           });
     }
-
-
   }
 
   return (
