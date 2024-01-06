@@ -11,6 +11,10 @@
     - Firebase Setup
     - Deploying our app to Production
     - Create SignUp on Firebase
+    - Implemented Sign In User Api
+    - Created redux Store with userSlice
+        - used onAuthStateChanged api
+    - learnt aboout useNavigate() hook
 # Features
 
 - Login/SignUp
