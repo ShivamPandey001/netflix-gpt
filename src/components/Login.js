@@ -1,13 +1,14 @@
 import { useRef, useState } from "react";
 import checkValidateData from "../utils/checkValidData";
 import Header from "./Header";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../utils/firebase"
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
+  const navigate = useNavigate();
   // useRef to create a reference
   const email = useRef(null);
   const password = useRef(null);
@@ -31,19 +32,22 @@ const Login = () => {
 
     // signIn SignUp Logic
     if(!isSignInForm){
-       
-        /**
-         * SignUp logic
-         *  const auth = getAuth(); to call in once inside our our app, just pasted it in firebase.js    
-         * createUserWithEmailAndPassword will take auth, emailId, and Password, 
-         * once you called the api it create the user if the response is success and also give the userId and signIn automatically, it not success it will throw the error
-         */
         createUserWithEmailAndPassword(auth, email.current.value, password.current.value, name.current.value)
           .then((userCredential) => {
-            // Signed In -> it will signedIn me automatically
             const user = userCredential.user;
             console.log(user);
-            // ...
+            // hard coding photo url
+            updateProfile(user, {
+                displayName: name.current.value, 
+                photoURL: "https://avatars.githubusercontent.com/u/54200130?v=4"
+              }).then(() => {
+                // Profile updated!
+                navigate("/browse")
+              }).catch((error) => {
+                // An error occurred
+                setErrorMessage(error.message)
+              });
+            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -54,10 +58,9 @@ const Login = () => {
         // Sign In logic
         signInWithEmailAndPassword(auth, email.current.value, password.current.value, name.current.value)
           .then((userCredential) => {
-            // Signed in
             const user = userCredential.user;
-            console.log(user)
-            // ...
+            console.log(user);
+            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
