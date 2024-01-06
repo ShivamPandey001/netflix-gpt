@@ -4,11 +4,13 @@
     - setup tailwind
     - Header
     - Routing
-    - Login Form
-    - SignUp Form
+    - Login Form/SignUp Form
+      - Single Form, toggeling it basedOn stateVariable
     - Form Validation
     - useRef Hooks
-
+    - Firebase Setup
+    - Deploying our app to Production
+    - Create SignUp on Firebase
 # Features
 
 - Login/SignUp
