@@ -3,7 +3,8 @@ import MovieList from "./MovieList";
 
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);
-  console.log(movies);
+  console.log("---")
+  console.log(movies.topRatedMovies);
   return (
     movies.nowPlayingMovies && (
       <div className="bg-black">
@@ -11,9 +12,11 @@ const SecondaryContainer = () => {
         <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
         <MovieList title={"Top Rated"} movies={movies.topRatedMovies} />
         <MovieList title={"Popular"} movies={movies.popularMovies} />
-        <MovieList title={"Upcoming Movies"} movies={movies.nowPlayingMovies} />
+        <MovieList title={"Upcoming Movies"} movies={movies.upComingMovies} />
         <MovieList title={"Horror Movies"} movies={movies.nowPlayingMovies} />
-        <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
+        <MovieList title={"Top Rated TV Series"} movies={movies.topRatedTVSeries} />
+        <MovieList title={"Airing Today"} movies={movies.airingTodayTVSeries} />
+
         </div>
       </div>
     )
