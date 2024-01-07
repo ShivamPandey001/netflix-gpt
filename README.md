@@ -32,6 +32,14 @@
     - Update store with Trailer Video Data
     - Embedded the youtube Video make it autoPlay and mute
     - Tailwind Classes to make mainContainer look awesome
+    - Secondary Component
+                {movies.map(movie=> <MovieCard key={movie.id} posterPath={movie.poster_path} />)}
+    - Build Secondary Component
+    - Build Secondary List
+    - Build Movie Card
+    - Found out TMDB image CDN url
+    - Made the Browse Page Amazing with Tailwind css
+    - created usePopularMovies, useTopRatedMovies Custom Hooks
 # Features
 
 - Login/SignUp
