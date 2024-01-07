@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { BGIMAGE, USER_AVATAR } from "../constants";
 const Login = () => {
+    //my local State Variables
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
@@ -36,7 +37,6 @@ const Login = () => {
         createUserWithEmailAndPassword(auth, email.current.value, password.current.value, name.current.value)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
             // hard coding photo url
             updateProfile(user, {
                 displayName: name.current.value, 

@@ -73,7 +73,6 @@ useEffect(() => {
                 className="w-16 h-16"
                 src={user.photoURL} alt="photoUrl"
             />
-            <label>{console.log(user)}</label>
             <button className="font-bold text-white" onClick={handleSignOut}>
                 Sign out
             </button>
