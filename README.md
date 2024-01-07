@@ -40,6 +40,9 @@
     - Found out TMDB image CDN url
     - Made the Browse Page Amazing with Tailwind css
     - created usePopularMovies, useTopRatedMovies Custom Hooks
+    - GPT search Page
+    - GPT searchBar
+    - Multi Language Support
 # Features
 
 - Login/SignUp

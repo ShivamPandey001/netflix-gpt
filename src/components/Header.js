@@ -7,11 +7,14 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO } from "../constants";
-
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { SUPPORTED_LANGUAGES } from "../constants";
+import { changeLanguage } from "../utils/configSlice";
 const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
         const user = useSelector(store => store.user);
+    const showGPTSearch = useSelector(store=> store.gpt.showGPTSearch)
 
 /**
  * Recap
@@ -59,26 +62,53 @@ useEffect(() => {
   return () => unsubscribe();
 }, []);
 
+const handleGptSearchButton = () =>{
+  dispatch(toggleGptSearchView());
+}
+
+const handleLanguageChange = (e) =>{
+    dispatch(changeLanguage(e.target.value))
+}
+
     const handleSignOut =()=>{
         signOut(auth).then(() => {
           }).catch((error) => {
             navigate("/error");
           });
     }
-    return <div className="w-screen absolute px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between"> 
-        <img className="w-44" src={LOGO} 
-        alt="logo" />
-        {user && (<div className="p-2">
-            <img 
-                className="w-16 h-16"
-                src={user.photoURL} alt="photoUrl"
-            />
-            <button className="font-bold text-white" onClick={handleSignOut}>
+    return (
+      <div className="w-screen absolute px-8 py-2 bg-gradient-to-b from-black z-20 flex justify-between">
+        <img className="w-44" src={LOGO} alt="logo" />
+        {user && (
+          <div className="flex p-2">
+            {showGPTSearch && (
+              <select
+                className="p-2 m-2 bg-gray-900 text-white"
+                onChange={handleLanguageChange}
+              >
+                {SUPPORTED_LANGUAGES.map((lang) => (
+                  <option key={lang.identifier} value={lang.identifier}>
+                    {lang.language}
+                  </option>
+                ))}
+              </select>
+            )}
+            <div className="flex justify-between">
+              <button
+                className="py-2 px-4 m-2 bg-purple-800 mx-4 text-white rounded-lg"
+                onClick={handleGptSearchButton}
+              >
+                { showGPTSearch ? "Home Page" : "GPT Search"}
+              </button>
+              <img className="w-16 h-16" src={user.photoURL} alt="photoUrl" />
+              <button className="font-bold text-white" onClick={handleSignOut}>
                 Sign out
-            </button>
-        </div>)
-        }   
-    </div>
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    );
 }
 
 export default Header;
