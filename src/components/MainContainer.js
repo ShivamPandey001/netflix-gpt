@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import SecondaryContainer from "./SecondaryContainer";
 import VideoBackground from "./VideoBackground";
 import VideoTitle from "./VideoTitle";
 
@@ -12,6 +13,7 @@ const MainContainer = () =>{
     return <div>
         <VideoTitle title={original_title} overview ={overview}/>
         <VideoBackground movieId={id} />
+        <SecondaryContainer />
     </div>
 }
 
