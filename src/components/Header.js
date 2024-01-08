@@ -13,7 +13,7 @@ import { changeLanguage } from "../utils/configSlice";
 const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-        const user = useSelector(store => store.user);
+    const user = useSelector(store => store.user);
     const showGPTSearch = useSelector(store=> store.gpt.showGPTSearch)
 
 /**
@@ -77,8 +77,8 @@ const handleLanguageChange = (e) =>{
           });
     }
     return (
-      <div className="w-screen absolute px-8 py-2 bg-gradient-to-b from-black z-20 flex justify-between">
-        <img className="w-44" src={LOGO} alt="logo" />
+      <div className="w-screen absolute px-8 py-2 bg-gradient-to-b from-black z-20 flex flex-col md:flex-row justify-between">
+        <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
         {user && (
           <div className="flex p-2">
             {showGPTSearch && (
@@ -100,7 +100,7 @@ const handleLanguageChange = (e) =>{
               >
                 { showGPTSearch ? "Home Page" : "GPT Search"}
               </button>
-              <img className="w-16 h-16" src={user.photoURL} alt="photoUrl" />
+              <img className="hidden md:block w-16 h-16" src={user.photoURL} alt="photoUrl" />
               <button className="font-bold text-white" onClick={handleSignOut}>
                 Sign out
               </button>
