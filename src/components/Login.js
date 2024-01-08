@@ -78,8 +78,13 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
+        {/* // TODO: make it compatible for smaller devices */}
+        {/* <img
           className="h-screen object-cover"
+          src={BGIMAGE}
+          alt="backGroundImage"
+        /> */}
+        <img
           src={BGIMAGE}
           alt="backGroundImage"
         />

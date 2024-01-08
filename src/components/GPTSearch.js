@@ -5,7 +5,9 @@ const GPTSearch = () => {
   return (
     <>
       <div className="fixed -z-10">
-        <img className="h-screen object-cover " src={BGIMAGE} alt="backGroundImage" />
+        {/* // TODO: make it compatible for smaller devices */}
+        {/* <img className="h-screen object-cover" src={BGIMAGE} alt="backGroundImage" /> */}
+        <img src={BGIMAGE} alt="backGroundImage" />
       </div>
       <div className="pt-[30%] md:p-0">
         <GPTSearchBar />
