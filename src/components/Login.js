@@ -78,21 +78,34 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
+        {/* // TODO: make it compatible for smaller devices */}
+        {/* <img
+          className="h-screen object-cover"
+          src={BGIMAGE}
+          alt="backGroundImage"
+        /> */}
         <img
           src={BGIMAGE}
           alt="backGroundImage"
         />
       </div>
-      <form onSubmit={(e) => {e.preventDefault()}} className="absolute p-12 bg-black w-3/12 my-36 mx-auto right-0 left-0 text-white opacity-80">
-        <h1 className="font-bold text-3xl py-4">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+        className="absolute p-12 bg-black w-full md:w-3/12 my-36 mx-auto right-0 left-0 text-white opacity-80"
+      >
+        <h1 className="font-bold text-2xl md:text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
-        { !isSignInForm && (<input
-          type="text"
-          ref={name}
-          placeholder="Full Name"
-          className="p-4 my-4 w-full bg-gray-700 rounded-md"
-        />)}
+        {!isSignInForm && (
+          <input
+            type="text"
+            ref={name}
+            placeholder="Full Name"
+            className="p-4 my-4 w-full bg-gray-700 rounded-md"
+          />
+        )}
         <input
           type="text"
           placeholder="Email Address"
@@ -105,16 +118,19 @@ const Login = () => {
           ref={password}
           className="p-4 my-4 w-full bg-gray-700 rounded-md"
         />
-        <p className="text-red-500 font-bold text-lg py-2">
-            {errorMessage}
-        </p>
-        <button className="p-4 my-6 bg-red-700 w-full rounded-lg rounded-md" onClick={handleButtonClick}>
-        {isSignInForm ? "Sign in" : "Sign up"}
+        <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
+        <button
+          className="p-4 my-6 bg-red-700 w-full rounded-lg rounded-md"
+          onClick={handleButtonClick}
+        >
+          {isSignInForm ? "Sign in" : "Sign up"}
         </button>
 
         <p onClick={toggleSignInForm} className="cursor-pointer">
-        {isSignInForm ? "New to Netflix? Sign up Now" : "Already registered?, Sign in Now"}
-            </p>
+          {isSignInForm
+            ? "New to Netflix? Sign up Now"
+            : "Already registered?, Sign in Now"}
+        </p>
       </form>
     </div>
   );

@@ -7,8 +7,8 @@ import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import useTopRatedTVSeries from "../hooks/useTopRatedTVSeries";
 import useAiringTodayTVSeries from "../hooks/useAiringTodayTVSeries";
-import GPTSearch from "./GPTSearch";
 import { useSelector } from "react-redux";
+import GPTSearch from "./GPTSearch";
 
 const Browse = () => {
   const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);

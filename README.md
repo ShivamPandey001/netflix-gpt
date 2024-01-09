@@ -43,6 +43,15 @@
     - GPT search Page
     - GPT searchBar
     - Multi Language Support
+    - Get Open AI Key
+    - GPT search API call
+    - Fetched GPT Movie suggestions from TMDB API
+    - created gptSlice added data overthere
+    - reused movieList Components to make movie recommendation container
+    - Memoization
+    - added .env file
+    - added .env file to .gitIgnore
+    - Made our site Responsive
 # Features
 
 - Login/SignUp

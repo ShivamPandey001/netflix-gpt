@@ -5,7 +5,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YWM5OTBhNWIxOWVjZjY4YzJhMDEwMDBhODkyMDhlOSIsInN1YiI6IjY1OTk4MjVjYmQ1ODhiMDA5MzkxYmQ2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FTSuMWoF_NG2RsWWvZDsdj_B3FQfEJrOxrgV49sLueg'
+      Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_API
     }
   };
 
